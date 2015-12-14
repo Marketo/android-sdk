@@ -1,4 +1,4 @@
-# Marketo Mobile SDK for Android 0.4.6
+# Marketo Mobile SDK for Android 0.5.0
 
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).  
 
