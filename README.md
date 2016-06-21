@@ -38,5 +38,5 @@ Please contact <developerfeedback@marketo.com> for any issues integrating or usi
 2.  Configure Android Push access [learn here](http://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+Android+Push+Access)
 
 ### Android SDK Setup
-1. Open Android Studio and open the application (ScreenShots/1)
+1. Open Android Studio and open the application![file] ( ScreenShots/1.png )
 2. once the application is opened in the Android Studio and check all the gradle dependancies are clear 
