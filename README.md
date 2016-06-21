@@ -22,3 +22,21 @@ v0.5.0
 - New secure access feature
 - New app type selection
 - Android notificaiton config large icon
+
+## Contributing Code
+
+We accept pull requests! Please raise a merge request.
+
+## Issues
+
+Please contact <developerfeedback@marketo.com> for any issues integrating or using this plugin.
+
+## Marketo Android SDK Installation Guide 
+
+### Prerequisites 
+1.  Register an application in Marketo Admin portal, get your application secret key and munchkin id.
+2.  Configure Android Push access [learn here](http://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+Android+Push+Access)
+
+### Android SDK Setup
+1. Open Android Studio and open the application (ScreenShots/1)
+2. once the application is opened in the Android Studio and check all the gradle dependancies are clear 
