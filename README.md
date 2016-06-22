@@ -49,14 +49,9 @@ Please contact <developerfeedback@marketo.com> for any issues integrating or usi
 10. select the name which you gave in step 7 ![file]( ScreenShots/12.png)
 11. select ok and let the gradle sync the project and resolve the dependancy![file]( ScreenShots/13.png)
 12. once gradle is complete it will show you the following info in Gradle Console![file]( ScreenShots/14.png)
-13. Open AndroidManifest.xml and add internet permission. Your app must request the “INTERNET” and “ACCESS_NETWORK_STATE” permissions. If your app already requests these permissions, then skip this step.
-
-```java
-    <uses‐permission android:name="android.permission.INTERNET"></uses‐permission>
-    <uses‐permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses‐permission>
-```
 
 ###SDK Initialization
+
 - Open your Application or Activity class in your app and import the Marketo SDK into your Activity before setContentView or in Application Context.
 
  ```java
@@ -79,15 +74,29 @@ Please contact <developerfeedback@marketo.com> for any issues integrating or usi
         super.onStart();
     }
 ```
-- ProGuard Configuration (Optional)
-If you are using ProGuard for your app, then add the following lines in your proguard.cfg file. The file will be located within your project folder. Adding this code will exclude the Marketo SDK from the obfuscation process.
 
+###Configure Permissions
+
+- Add following permission inside <application> tag.
+
+ Open AndroidManifest.xml and add following permissions. Your app must request the “INTERNET” and “ACCESS_NETWORK_STATE” permissions. If your app already requests these permissions, then skip this step.
 ```java
-    -dontwarn com.marketo.*
-    -dontnote com.marketo.*
-    -keep class com.marketo.**{ *; }
+    <uses‐permission android:name="android.permission.INTERNET"></uses‐permission>
+    <uses‐permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <!‐‐Keeps the processor from sleeping when a message is received.‐‐>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <permission android:name="<PACKAGE_NAME>.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+    <uses-permission android:name="<PACKAGE_NAME>.permission.C2D_MESSAGE" />
+    <!-- This app has permission to register and receive data message. -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 ```
+
 - Android Test Devices
+
 Add Marketo Activity in manifest file inside <application> tag.
 ```java
     <activity android:name="com.marketo.MarketoActivity"  android:configChanges="orientation|screenSize" >
@@ -100,7 +109,7 @@ Add Marketo Activity in manifest file inside <application> tag.
     </activity>
 ```
 
-### Register Marketo Push Service
+- Register Marketo Push Service
 
 To receive push notifications from Marketo, you need to add the Marketo Service and Broadcast Receiver to your AndroidManifest.xml.  Add before the closing </application> tag.
 ```java
@@ -119,22 +128,6 @@ To receive push notifications from Marketo, you need to add the Marketo Service 
     
     <!‐‐Marketo service to handle push registration and notification‐‐>
     <service android:name="com.marketo.MarketoIntentService"/>
-```
-
-###Configure Permissions
-
-To receive a push notification, add the following permissions to your AndroidManifest.xml.   Add before the opening <application> tag.
-```java
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-    <!‐‐Keeps the processor from sleeping when a message is received.‐‐>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <permission android:name="<PACKAGE_NAME>.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-    <uses-permission android:name="<PACKAGE_NAME>.permission.C2D_MESSAGE" />
-    <!-- This app has permission to register and receive data message. -->
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 ```
 
 ###Initialize Marketo Push
@@ -258,4 +251,13 @@ The Marketo SDK exposes new methods to set and remove the security signature. Th
       
       // get device id
       sdk.getDeviceId();
+```
+
+### ProGuard Configuration (Optional)
+If you are using ProGuard for your app, then add the following lines in your proguard.cfg file. The file will be located within your project folder. Adding this code will exclude the Marketo SDK from the obfuscation process.
+
+```java
+    -dontwarn com.marketo.*
+    -dontnote com.marketo.*
+    -keep class com.marketo.**{ *; }
 ```
