@@ -2,7 +2,7 @@
 
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).  
 
-Change Log
+# Change Log
 
 v0.6.0
 - InApp Notifications
@@ -21,18 +21,18 @@ v0.5.0
 - New app type selection
 - Android notificaiton config large icon
 
-## Issues
+# Issues
 
 Please contact <developerfeedback@marketo.com> for any issues integrating or using this plugin.
 
 # Marketo Android SDK Installation Guide 
 
-### Prerequisites 
+## Prerequisites 
 1.  Register an application in Marketo Admin portal, get your application secret key and munchkin id.
 2.  Configure Android Push access [learn here](http://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+Android+Push+Access)
 3.  Download [Marketo SDK for Android](https://github.com/Marketo/android-sdk/archive/master.zip). 
 
-### Android SDK Setup
+## Android SDK Setup
 1. Open your project in android Studio![file]( ScreenShots/2.png)
 2. Right click on your project and select #Open Module Settings![file]( ScreenShots/3.png)
 3. Click on the '+' button on the top Left Corner ![file]( ScreenShots/4.png)
@@ -46,7 +46,62 @@ Please contact <developerfeedback@marketo.com> for any issues integrating or usi
 11. select ok and let the gradle sync the project and resolve the dependancy![file]( ScreenShots/13.png)
 12. once gradle is complete it will show you the following info in Gradle Console![file]( ScreenShots/14.png)
 
-###SDK Initialization
+## Configure Permissions
+
+- Add following permission inside application tag.
+
+ Open AndroidManifest.xml and add following permissions. Your app must request the “INTERNET” and “ACCESS_NETWORK_STATE” permissions. If your app already requests these permissions, then skip this step.
+```java
+    <uses‐permission android:name="android.permission.INTERNET"/>
+    <uses‐permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <!‐‐Keeps the processor from sleeping when a message is received.‐‐>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <permission android:name="<PACKAGE_NAME>.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+    <uses-permission android:name="<PACKAGE_NAME>.permission.C2D_MESSAGE" />
+    <!-- This app has permission to register and receive data message. -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+```
+
+### Android Test Devices
+
+Add Marketo Activity in manifest file inside application tag.
+```java
+    <activity android:name="com.marketo.MarketoActivity"  android:configChanges="orientation|screenSize" >
+        <intent-filter android:label="MarketoActivity" >
+            <action  android:name="android.intent.action.VIEW"/>
+            <category  android:name="android.intent.category.DEFAULT"/>
+            <category  android:name="android.intent.category.BROWSABLE"/>
+            <data android:host="add_test_device" android:scheme="mkto" />
+        </intent-filter>
+    </activity>
+```
+
+### Register Marketo Push Service
+
+To receive push notifications from Marketo, you need to add the Marketo Service and Broadcast Receiver to your AndroidManifest.xml.  Add before the closing of application tag.
+```java
+    <receiver android:name="com.marketo.MarketoBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+        <intent-filter>
+            <!‐‐Receives the actual messages.‐‐>
+            <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+    
+            <!‐‐Register to enable push notification‐‐>
+            <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+    
+            <!‐‐‐Replace YOUR_PACKAGE_NAME with your own package name‐‐>
+            <category android:name="YOUR_PACKAGE_NAME"/>
+        </intent-filter>
+    </receiver>
+    
+    <!‐‐Marketo service to handle push registration and notification‐‐>
+    <service android:name="com.marketo.MarketoIntentService"/>
+```
+
+## SDK Initialization
 
 - Open your Application or Activity class in your app and import the Marketo SDK into your Activity before setContentView or in Application Context.
 
@@ -70,63 +125,7 @@ Please contact <developerfeedback@marketo.com> for any issues integrating or usi
         super.onStart();
     }
 ```
-
-###Configure Permissions
-
-- Add following permission inside application tag.
-
- Open AndroidManifest.xml and add following permissions. Your app must request the “INTERNET” and “ACCESS_NETWORK_STATE” permissions. If your app already requests these permissions, then skip this step.
-```java
-    <uses‐permission android:name="android.permission.INTERNET"/>
-    <uses‐permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-    <!‐‐Keeps the processor from sleeping when a message is received.‐‐>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <permission android:name="<PACKAGE_NAME>.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-    <uses-permission android:name="<PACKAGE_NAME>.permission.C2D_MESSAGE" />
-    <!-- This app has permission to register and receive data message. -->
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-```
-
-- Android Test Devices
-
-Add Marketo Activity in manifest file inside application tag.
-```java
-    <activity android:name="com.marketo.MarketoActivity"  android:configChanges="orientation|screenSize" >
-        <intent-filter android:label="MarketoActivity" >
-            <action  android:name="android.intent.action.VIEW"/>
-            <category  android:name="android.intent.category.DEFAULT"/>
-            <category  android:name="android.intent.category.BROWSABLE"/>
-            <data android:host="add_test_device" android:scheme="mkto" />
-        </intent-filter>
-    </activity>
-```
-
-- Register Marketo Push Service
-
-To receive push notifications from Marketo, you need to add the Marketo Service and Broadcast Receiver to your AndroidManifest.xml.  Add before the closing of application tag.
-```java
-    <receiver android:name="com.marketo.MarketoBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
-        <intent-filter>
-            <!‐‐Receives the actual messages.‐‐>
-            <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-    
-            <!‐‐Register to enable push notification‐‐>
-            <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
-    
-            <!‐‐‐Replace YOUR_PACKAGE_NAME with your own package name‐‐>
-            <category android:name="YOUR_PACKAGE_NAME"/>
-        </intent-filter>
-    </receiver>
-    
-    <!‐‐Marketo service to handle push registration and notification‐‐>
-    <service android:name="com.marketo.MarketoIntentService"/>
-```
-
-###Initialize Marketo Push
+## Initialize Marketo Push
 
 After saving the configuration above, you must initialize Marketo Push Notification. Create or open your Application class and copy/paste the code below. You can get your sender ID from the Google Developer Portal.
 
