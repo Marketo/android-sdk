@@ -222,7 +222,7 @@ You can create rich profiles by sending user fields as shown below.
     marketoSdk.associateLead(profile);
 ```
 
-#####You can track user interaction by sending custom actions.
+###You can track user interaction by sending custom actions.
 
 - Send custom action.
 ```java
@@ -238,11 +238,12 @@ You can create rich profiles by sending user fields as shown below.
     
     Marketo.reportAction("Bought Shirt", meta);
 ```
+
 ###Advanced Security Access Mode
 
 This setup must be implemented before the Secure Access mode has been enable via the Marketo Admin -> Mobile Apps & Devices page. The following further steps describe the process required to complete the security validation process:
 
- Secure Access mode requires implementing the signature algorithm on the customer server-side that will provide an endpoint to retrieve the access key, calculated signature, expiry timestamp, and email. This algorithm requires the user access key, access secret, email, timestamp, and device id to preform the calculation. The customer is responsible for setting up endpoint, implementing the algorithm to preform signature calculations, and also keep expiration timestamp fresh.[Link Here](http://developers.marketo.com/documentation/mobile/advanced-security-access-mode/)
+Secure Access mode requires implementing the signature algorithm on the customer server-side that will provide an endpoint to retrieve the access key, calculated signature, expiry timestamp, and email. This algorithm requires the user access key, access secret, email, timestamp, and device id to preform the calculation. The customer is responsible for setting up endpoint, implementing the algorithm to preform signature calculations, and also keep expiration timestamp fresh.[Link Here](http://developers.marketo.com/documentation/mobile/advanced-security-access-mode/)
 
 The Marketo SDK exposes new methods to set and remove the security signature. There is also a utility method to retrieve the device ID. The device ID should be passed along with the email, upon login, to the customer server for use in calculating the security signature. The SDK should the hit new endpoint, pointing to algorithm listed above, to retrieve the necessary fields to instantiate the signature object. Setting this signature in the SDK is a necessary step if the Security Access Mode has been enabled in Marketo Mobile Admin.
 
