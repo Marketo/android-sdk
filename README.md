@@ -139,8 +139,8 @@ To receive a push notification, add the following permissions to your AndroidMan
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <!‐‐Keeps the processor from sleeping when a message is received.‐‐>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <permission android:name="REPLACE_ME.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-    <uses-permission android:name="REPLACE_ME.permission.C2D_MESSAGE" />
+    <permission android:name="<PACKAGE_NAME>.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+    <uses-permission android:name="<PACKAGE_NAME>.permission.C2D_MESSAGE" />
     <!-- This app has permission to register and receive data message. -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 ```
