@@ -90,7 +90,7 @@ If you are using ProGuard for your app, then add the following lines in your pro
 - Android Test Devices
 Add Marketo Activity in manifest file inside <application> tag.
 ```java
-    <activity android:name="com.marketo.MarketoActivity" >
+    <activity android:name="com.marketo.MarketoActivity"  android:configChanges="orientation|screenSize" >
         <intent-filter android:label="MarketoActivity" >
             <action  android:name="android.intent.action.VIEW"/>
             <category  android:name="android.intent.category.DEFAULT"/>
@@ -104,13 +104,6 @@ Add Marketo Activity in manifest file inside <application> tag.
 
 To receive push notifications from Marketo, you need to add the Marketo Service and Broadcast Receiver to your AndroidManifest.xml.  Add before the closing </application> tag.
 ```java
-    <activity android:name="com.marketo.MarketoActivity" android:configChanges="orientation|screenSize">
-        <intent-filter android:label="MarketoActivity">
-            <action android:name="android.intent.action.VIEW"/>
-            <category android:name="android.intent.category.DEFAULT"/>
-        </intent-filter>
-    </activity>
-    
     <receiver android:name="com.marketo.MarketoBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
         <intent-filter>
             <!‐‐Receives the actual messages.‐‐>
