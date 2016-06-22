@@ -37,20 +37,19 @@ Please contact <developerfeedback@marketo.com> for any issues integrating or usi
 3.  Download [Marketo SDK for Android](https://github.com/Marketo/android-sdk/archive/master.zip). 
 
 ### Android SDK Setup
-1. Open Android Studio and open the application![file] ( ScreenShots/1.png )
-2. once the application is opened in the Android Studio and check all the gradle dependancies are clear ![file]( ScreenShots/2.png)
-3. Right click on your project and select #Open Module Settings#![file]( ScreenShots/3.png)
-4. Click on the '+' button on the top Left Corner ![file]( ScreenShots/4.png)
-5. Select 'Import .JAR/.AAR package' and click 'Next'![file]( ScreenShots/5.png)
-6. Now clik on the '...' button and select the location of the .aar file from Marketo Android SDK ![file]( ScreenShots/6.png)
-7. You can change the name of the sub project and select finish and select ok ![file]( ScreenShots/7.png)
-8. Right click on your project and select #Open Module Settings#![file]( ScreenShots/3.png)
-9. Select your project name in the Modules and click on the dependancies tab![file]( ScreenShots/10.png)
-10. Click on the '+' button (at the bottom on Mac and at the left right top corner on windows) and select Module dependency ![file]( ScreenShots/11.png)
-11. select the name which you gave in step 7 ![file]( ScreenShots/12.png)
-12. select ok and let the gradle sync the project and resolve the dependancy![file]( ScreenShots/13.png)
-13. once gradle is complete it will show you the following info in Gradle Console![file]( ScreenShots/14.png)
-14. Open AndroidManifest.xml and add internet permission. Your app must request the “INTERNET” and “ACCESS_NETWORK_STATE” permissions. If your app already requests these permissions, then skip this step.
+1. Open your project in android Studio![file]( ScreenShots/2.png)
+2. Right click on your project and select #Open Module Settings![file]( ScreenShots/3.png)
+3. Click on the '+' button on the top Left Corner ![file]( ScreenShots/4.png)
+4. Select 'Import .JAR/.AAR package' and click 'Next'![file]( ScreenShots/5.png)
+5. Now clik on the '...' button and select the location of the .aar file from Marketo Android SDK ![file]( ScreenShots/6.png)
+6. You can change the name of the sub project and select finish and select ok ![file]( ScreenShots/7.png)
+7. Right click on your project and select #Open Module Settings#![file]( ScreenShots/3.png)
+8. Select your project name in the Modules and click on the dependancies tab![file]( ScreenShots/10.png)
+9. Click on the '+' button (at the bottom on Mac and at the left right top corner on windows) and select Module dependency ![file]( ScreenShots/11.png)
+10. select the name which you gave in step 7 ![file]( ScreenShots/12.png)
+11. select ok and let the gradle sync the project and resolve the dependancy![file]( ScreenShots/13.png)
+12. once gradle is complete it will show you the following info in Gradle Console![file]( ScreenShots/14.png)
+13. Open AndroidManifest.xml and add internet permission. Your app must request the “INTERNET” and “ACCESS_NETWORK_STATE” permissions. If your app already requests these permissions, then skip this step.
 
 ```java
     <uses‐permission android:name="android.permission.INTERNET"></uses‐permission>
