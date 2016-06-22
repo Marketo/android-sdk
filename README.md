@@ -21,10 +21,6 @@ v0.5.0
 - New app type selection
 - Android notificaiton config large icon
 
-## Contributing Code
-
-We accept pull requests! Please raise a merge request.
-
 ## Issues
 
 Please contact <developerfeedback@marketo.com> for any issues integrating or using this plugin.
@@ -77,11 +73,11 @@ Please contact <developerfeedback@marketo.com> for any issues integrating or usi
 
 ###Configure Permissions
 
-- Add following permission inside <application> tag.
+- Add following permission inside application tag.
 
  Open AndroidManifest.xml and add following permissions. Your app must request the “INTERNET” and “ACCESS_NETWORK_STATE” permissions. If your app already requests these permissions, then skip this step.
 ```java
-    <uses‐permission android:name="android.permission.INTERNET"></uses‐permission>
+    <uses‐permission android:name="android.permission.INTERNET"/>
     <uses‐permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -97,7 +93,7 @@ Please contact <developerfeedback@marketo.com> for any issues integrating or usi
 
 - Android Test Devices
 
-Add Marketo Activity in manifest file inside <application> tag.
+Add Marketo Activity in manifest file inside application tag.
 ```java
     <activity android:name="com.marketo.MarketoActivity"  android:configChanges="orientation|screenSize" >
         <intent-filter android:label="MarketoActivity" >
@@ -111,7 +107,7 @@ Add Marketo Activity in manifest file inside <application> tag.
 
 - Register Marketo Push Service
 
-To receive push notifications from Marketo, you need to add the Marketo Service and Broadcast Receiver to your AndroidManifest.xml.  Add before the closing </application> tag.
+To receive push notifications from Marketo, you need to add the Marketo Service and Broadcast Receiver to your AndroidManifest.xml.  Add before the closing of application tag.
 ```java
     <receiver android:name="com.marketo.MarketoBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
         <intent-filter>
@@ -225,6 +221,15 @@ You can create rich profiles by sending user fields as shown below.
     Marketo.reportAction("Bought Shirt", meta);
 ```
 
+### ProGuard Configuration (Optional)
+If you are using ProGuard for your app, then add the following lines in your proguard.cfg file. The file will be located within your project folder. Adding this code will exclude the Marketo SDK from the obfuscation process.
+
+```java
+    -dontwarn com.marketo.*
+    -dontnote com.marketo.*
+    -keep class com.marketo.**{ *; }
+```
+
 ###Advanced Security Access Mode
 
 This setup must be implemented before the Secure Access mode has been enable via the Marketo Admin -> Mobile Apps & Devices page. The following further steps describe the process required to complete the security validation process:
@@ -251,13 +256,4 @@ The Marketo SDK exposes new methods to set and remove the security signature. Th
       
       // get device id
       sdk.getDeviceId();
-```
-
-### ProGuard Configuration (Optional)
-If you are using ProGuard for your app, then add the following lines in your proguard.cfg file. The file will be located within your project folder. Adding this code will exclude the Marketo SDK from the obfuscation process.
-
-```java
-    -dontwarn com.marketo.*
-    -dontnote com.marketo.*
-    -keep class com.marketo.**{ *; }
 ```
