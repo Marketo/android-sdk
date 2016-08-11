@@ -27,7 +27,7 @@ v0.5.0
 
 # Issues
 
-Please contact <developerfeedback@marketo.com> for any issues integrating or using this plugin.
+If you encounter issues using or integrating this plugin, please file a support ticket at support.marketo.com
 
 # Marketo Android SDK Installation Guide 
 
