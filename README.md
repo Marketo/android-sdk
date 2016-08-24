@@ -58,9 +58,9 @@ If you encounter issues using or integrating this plugin, please file a support 
 ```java
     <uses‐permission android:name="android.permission.INTERNET"/>
     <uses‐permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+   
+   <!‐‐Following permissions are required for push notification.‐‐>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <!‐‐Keeps the processor from sleeping when a message is received.‐‐>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
