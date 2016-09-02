@@ -15,7 +15,7 @@ v0.5.3
 - Fixed bug that stop push notification when app was closed
 
 v0.5.2
-- Removed depricated android methods to allow building with Proguard
+- Removed deprecated android methods to allow building with Proguard
 
 v0.5.1
 - Fixed intent.getAction condition
