@@ -4,6 +4,9 @@ The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
 # Change Log
 
+v0.6.4
+- Exposed method [MarketoSDK reportAll] to immediately send events
+
 v0.6.3
 - Bug fixes related to inapp
 - added display frequency 'once'
