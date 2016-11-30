@@ -1,8 +1,14 @@
-# Marketo Mobile SDK for Android 0.7.1
+# Marketo Mobile SDK for Android 0.7.2
 
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).  
 
 # Change Log
+
+v0.7.2
+- Fixed bug when using Priority method in Android versions previous to 5.0
+- Default sound in Android is now on when user receives a notification
+- Android Push Notification text now wrap to make it more readable
+- Migrated from HttpClient to HttpURLConnection
 
 v0.7.1
 - Remove GET_ACCOUNTS permission check
