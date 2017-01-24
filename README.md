@@ -4,35 +4,33 @@ The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
 # Change Log
 
-v0.7.4
+v0.7.3 - v0.7.4 (Upcoming)
 - Exposed removeDevicePushToken() method
-
-v0.7.3
 - Notifications are now dismissed from the notification center after tap (Android 4.0)
 - Custom large notification icon no longer shows default image (Android 4.0)
 
-v0.7.2
+v0.7.2 (November 30, 2016)
 - Fixed bug when using Priority method in Android versions previous to 5.0
 - Default sound in Android is now on when user receives a notification
 - Android Push Notification text now wrap to make it more readable
 - Migrated from HttpClient to HttpURLConnection
 
-v0.7.1
+v0.7.1 (November 4, 2016)
 - Remove GET_ACCOUNTS permission check
 - No longer stacking push notifications
 - Catching client protocol exception
 
-v0.7.0
+v0.7.0 (October 13, 2016)
 - Supporting Android Version 7.0
 
-v0.6.4
+v0.6.4 (August 22, 2016)
 - Exposed method [MarketoSDK reportAll] to immediately send events
 
-v0.6.3
+v0.6.3 (July 15, 2016)
 - Bug fixes related to inapp
 - added display frequency 'once'
 
-v0.6.0
+v0.6.0 (June 10, 2016)
 - InApp Notifications
 
 v0.5.3
