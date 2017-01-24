@@ -162,6 +162,12 @@ After saving the configuration above, you must initialize Marketo Push Notificat
     // Enable push notification here.
     marketoSdk.initializeMarketoPush(SENDER_ID);
 ```
+The token can also be unregistered.
+
+```java
+marketoSdk.uninitailizeMarketoPush();
+```
+
 If you do not have a SENDER_ID, then enable Google Cloud Messaging Service by completing the steps detailed in [this tutorial](https://developer.android.com/google/gcm/client.html).
 
 ###Set Notification Icon (Optional)
