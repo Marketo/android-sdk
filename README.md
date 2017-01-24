@@ -1,8 +1,11 @@
-# Marketo Mobile SDK for Android 0.7.3
+# Marketo Mobile SDK for Android 0.7.4
 
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).  
 
 # Change Log
+
+v0.7.4
+- Exposed removeDevicePushToken() method
 
 v0.7.3
 - Notifications are now dismissed from the notification center after tap (Android 4.0)
