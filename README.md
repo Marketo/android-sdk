@@ -162,11 +162,11 @@ After saving the configuration above, you must initialize Marketo Push Notificat
     // Enable push notification here.
     marketoSdk.initializeMarketoPush(SENDER_ID);
 ```
-The token can also be unregistered.
-
+######The token can also be unregistered when user logs out.
 ```java
 marketoSdk.uninitailizeMarketoPush();
 ```
+######**_Note_** To re-register the push token extract the code from step 3 into an AppDelegate method and call form the ViewController login method.
 
 If you do not have a SENDER_ID, then enable Google Cloud Messaging Service by completing the steps detailed in [this tutorial](https://developer.android.com/google/gcm/client.html).
 
