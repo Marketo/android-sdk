@@ -1,8 +1,11 @@
-# Marketo Mobile SDK for Android 0.7.4
+# Marketo Mobile SDK for Android 0.7.5
 
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).  
 
 # Change Log
+
+v0.7.5 (August 15, 2017)
+- MOB-2577 - Fixed bug that crashed app when passing deeplink such as ":" to MarketoActivity
 
 v0.7.3 - v0.7.4 (June 7, 2017)
 - Exposed removeDevicePushToken() method
