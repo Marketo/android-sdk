@@ -1,12 +1,13 @@
-# Marketo Mobile SDK for Android 0.7.6
+Marketo Mobile SDK for Android 0.7.6
 
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).  
 
 # Change Log
 
 v0.7.6 (January 18, 2018)
+-ing Android Activity Lifecycle Callbacks
+- Deprecated Marketo.onStart() and Marketo.onStop(), no longer required
 - Added support for Android API Levels 26 and 27
-- Removed need for Marketo.onStart() and Marketo.onStop() method calls
 - The minimum supported Android API Level is now 14
 
 v0.7.5 (August 15, 2017)
