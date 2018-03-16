@@ -67,14 +67,33 @@ If you encounter issues using or integrating this plugin, please file a support 
 2.  Configure Android Push access [learn here](http://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+Android+Push+Access)
 
 ## Android SDK Setup
+
+### Linking the Marketo .AAR Package with Application
+1. Open your project in android Studio![file]( ScreenShots/2.png)
+2. Right click on your project and select #Open Module Settings![file]( ScreenShots/3.png)
+3. Click on the '+' button on the top Left Corner ![file]( ScreenShots/4-1.png)
+4. Select 'Import .JAR/.AAR package' and click 'Next'![file]( ScreenShots/5.png)
+5. Now click on the '...' button and select the location of the .aar file from Marketo Android SDK ![file]( ScreenShots/6.png)
+6. You can change the name of the sub project and select finish and select ok ![file]( ScreenShots/7.png)
+7. Right click on your project and select #Open Module Settings#![file]( ScreenShots/3.png)
+8. Select your project name in the Modules and click on the dependancies tab![file]( ScreenShots/10.png)
+9. Click on the '+' button (at the bottom on Mac and at the left right top corner on windows) and select Module dependency ![file]( ScreenShots/11.png)
+10. select the name which you gave in step 7 ![file]( ScreenShots/12.png)
+11. select ok and let the gradle sync the project and resolve the dependancy![file]( ScreenShots/13.png)
+12. once gradle is complete it will show you the following info in Gradle Console![file]( ScreenShots/14.png)
+
+### Using Maven to integrate Marketo SDK with Application
+
 1. Open your project in android Studio![file]( ScreenShots/2.png)
 2. Right click on your project and select #Open Module Settings![file]( ScreenShots/3.png)
 3. Click on Project which is in the Left panel of the screen ![file]( ScreenShots/4.png)
-4. In *Android Plugin Repository* add " 'https://github.com/pandemanish/android-sdk/raw/Demo/' "
-5. In *Default Library Repository* add " 'https://github.com/pandemanish/android-sdk/raw/Demo/' "
+4. In *Android Plugin Repository* add " 'https://github.com/Marketo/android-sdk/raw/preprod/' "
+5. In *Default Library Repository* add " 'https://github.com/Marketo/android-sdk/raw/preprod/' "
 6. Click OK
-7. In application level build.gradle under dependencies add " implementation 'com.marketo:MarketoSDK:0.7.5' "
+7. In application level build.gradle under dependencies add " implementation 'com.marketo:MarketoSDK:0.7.6' "
 8. Sync your Project with Gradle Files
+
+
 <!-- 3. Click on the '+' button on the top Left Corner ![file]( ScreenShots/4.png)
 4. Select 'Import .JAR/.AAR package' and click 'Next'![file]( ScreenShots/5.png)
 5. Now clik on the '...' button and select the location of the .aar file from Marketo Android SDK ![file]( ScreenShots/6.png)
@@ -85,6 +104,7 @@ If you encounter issues using or integrating this plugin, please file a support 
 10. select the name which you gave in step 7 ![file]( ScreenShots/12.png)
 11. select ok and let the gradle sync the project and resolve the dependancy![file]( ScreenShots/13.png)
 12. once gradle is complete it will show you the following info in Gradle Console![file]( ScreenShots/14.png) -->
+
 
 ## Configure Permissions
 
@@ -175,7 +195,7 @@ After saving the configuration above, you must initialize Marketo Push Notificat
     // Enable push notification here.
     marketoSdk.initializeMarketoPush(SENDER_ID);
 ```
-######The token can also be unregistered when user logs out.
+###### The token can also be unregistered when user logs out.
 ```java
 marketoSdk.uninitailizeMarketoPush();
 ```
@@ -183,7 +203,7 @@ marketoSdk.uninitailizeMarketoPush();
 
 If you do not have a SENDER_ID, then enable Google Cloud Messaging Service by completing the steps detailed in [this tutorial](https://developer.android.com/google/gcm/client.html).
 
-###Set Notification Icon (Optional)
+### Set Notification Icon (Optional)
 
 To configure a custom notification icon the following method should be called.
 ```java
@@ -203,7 +223,7 @@ To configure a custom notification icon the following method should be called.
 
 ```
 
-###How to Create User Profile on Android
+### How to Create User Profile on Android
 
 - Create User Profile
 
@@ -248,7 +268,7 @@ You can create rich profiles by sending user fields as shown below.
     marketoSdk.associateLead(profile);
 ```
 
-###You can track user interaction by sending custom actions.
+### You can track user interaction by sending custom actions.
 
 - Send custom action.
 ```java
