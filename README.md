@@ -1,8 +1,12 @@
-# Marketo Mobile SDK for Android 0.7.7
+# Marketo Mobile SDK for Android 0.7.8
 
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).  
 
 # Change Log
+v0.7.8 (Dec 10, 2018)
+- Added Support for Firebase Cloud Messaging
+- Fixed Bugs
+
 v0.7.7 (May 25, 2018)
 - Added Support for Android API Level P (28)
 - Fixed Bugs
@@ -89,7 +93,7 @@ If you encounter issues using or integrating this plugin, please file a support 
 11. select ok and let the gradle sync the project and resolve the dependancy![file]( ScreenShots/13.png)
 12. once gradle is complete it will show you the following info in Gradle Console![file]( ScreenShots/14.png) -->
 
- ##**_Note_** Marekto SDK supports Android API Level 14 and above
+## (Note) Marekto SDK supports Android API Level 14 and above
 
 ## Configure Permissions
 
@@ -184,15 +188,15 @@ After saving the configuration above, you must initialize Marketo Push Notificat
     // Enable push notification here.
     marketoSdk.initializeMarketoPush(SENDER_ID);
 ```
-###### The token can also be unregistered when user logs out.
+######The token can also be unregistered when user logs out.
 ```java
 marketoSdk.uninitailizeMarketoPush();
 ```
-###### **_Note_** To re-register the push token extract the code from step 3 into an AppDelegate method and call form the ViewController login method.
+######**_Note_** To re-register the push token extract the code from step 3 into an AppDelegate method and call form the ViewController login method.
 
 If you do not have a SENDER_ID, then enable Google Cloud Messaging Service by completing the steps detailed in [this tutorial](https://developer.android.com/google/gcm/client.html).
 
-### Set Notification Icon (Optional)
+###Set Notification Icon (Optional)
 
 To configure a custom notification icon the following method should be called.
 ```java
@@ -212,7 +216,7 @@ To configure a custom notification icon the following method should be called.
 
 ```
 
-### How to Create User Profile on Android
+###How to Create User Profile on Android
 
 - Create User Profile
 
@@ -257,7 +261,7 @@ You can create rich profiles by sending user fields as shown below.
     marketoSdk.associateLead(profile);
 ```
 
-### You can track user interaction by sending custom actions.
+###You can track user interaction by sending custom actions.
 
 - Send custom action.
 ```java
@@ -283,7 +287,7 @@ If you are using ProGuard for your app, then add the following lines in your pro
     -keep class com.marketo.**{ *; }
 ```
 
-### Advanced Security Access Mode
+###Advanced Security Access Mode
 
 This setup must be implemented before the Secure Access mode has been enable via the Marketo Admin -> Mobile Apps & Devices page. The following further steps describe the process required to complete the security validation process:
 
