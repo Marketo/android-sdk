@@ -1,4 +1,4 @@
-# Marketo Mobile SDK for Android 0.7.8
+# Marketo Mobile SDK for Android 0.7.7
 
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).  
 
@@ -111,6 +111,12 @@ If you encounter issues using or integrating this plugin, please file a support 
     <!-- This app has permission to register and receive data message. -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 ```
+
+Note :-  If the Build vesion is Android P then please Add following Permission 
+```java
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+```
+
 
 ### Android Test Devices
 
