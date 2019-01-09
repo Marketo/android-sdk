@@ -100,6 +100,7 @@ Caused by: org.gradle.api.internal.artifacts.ivyservice.ivyresolve.parser.MetaDa
 
 Follow steps:
 1. You can delete all the existing artifacts (artifacts and metadata) Gradle has downloaded using:
+
 For Unix:
 ```java
 rm -rf $HOME/.gradle/caches/
