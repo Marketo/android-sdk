@@ -95,7 +95,7 @@ If you encounter issues using or integrating this plugin, please file a support 
 
 ## (Note) Marekto SDK supports Android API Level 14 and above
 ## (Troubleshooting) 
-If following error occures while building application with marketo sdk v0.7.8
+If following error occures while building application with marketo sdk v0.7.8 .  
 Caused by: org.gradle.api.internal.artifacts.ivyservice.ivyresolve.parser.MetaDataParseException: inconsistent module metadata found. Descriptor: com.marketo:MarketoSDK:0.7.7 Errors: bad version: expected='0.7.8' found='0.7.7'
 
 Follow steps:
