@@ -1,8 +1,13 @@
-# Marketo Mobile SDK for Android 0.7.8
+# Marketo Mobile SDK for Android 0.7.9
 
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).  
 
 # Change Log
+v0.7.9 (Mar 04, 2019)
+- FCM changes to support custom Marketo Push Notification Receiver
+- Configured Push Notification Channel Name.
+- Fixed Bugs
+
 v0.7.8 (Dec 10, 2018)
 - Added Support for Firebase Cloud Messaging
 - Fixed Bugs
