@@ -82,10 +82,10 @@ If you encounter issues using or integrating this plugin, please file a support 
 1. Open your project in android Studio![file]( ScreenShots/2.png)
 2. Right click on your project and select #Open Module Settings![file]( ScreenShots/3.png)
 3. Click on Project which is in the Left panel of the screen ![file]( ScreenShots/4.png)
-4. In *Android Plugin Repository* add " 'https://github.com/Marketo/android-sdk/raw/preprod/' "
-5. In *Default Library Repository* add " 'https://github.com/Marketo/android-sdk/raw/preprod/' "
+4. In *Android Plugin Repository* add " 'https://github.com/Marketo/android-sdk/raw/master/' "
+5. In *Default Library Repository* add " 'https://github.com/Marketo/android-sdk/raw/master/' "
 6. Click OK
-7. In application level build.gradle under dependencies add " implementation 'com.marketo:MarketoSDK:0.7.7' "
+7. In application level build.gradle under dependencies add " implementation 'com.marketo:MarketoSDK:0.7.8' "
 8. Sync your Project with Gradle Files
 <!-- 3. Click on the '+' button on the top Left Corner ![file]( ScreenShots/4.png)
 4. Select 'Import .JAR/.AAR package' and click 'Next'![file]( ScreenShots/5.png)
@@ -99,6 +99,22 @@ If you encounter issues using or integrating this plugin, please file a support 
 12. once gradle is complete it will show you the following info in Gradle Console![file]( ScreenShots/14.png) -->
 
 ## (Note) Marekto SDK supports Android API Level 14 and above
+## (Troubleshooting) 
+If following error occures while building application with marketo sdk v0.7.8 .  
+Caused by: org.gradle.api.internal.artifacts.ivyservice.ivyresolve.parser.MetaDataParseException: inconsistent module metadata found. Descriptor: com.marketo:MarketoSDK:0.7.7 Errors: bad version: expected='0.7.8' found='0.7.7'
+
+Follow steps:
+1. You can delete all the existing artifacts (artifacts and metadata) Gradle has downloaded using:
+
+For Unix:
+```java
+rm -rf $HOME/.gradle/caches/
+```
+For Windows:
+```java
+rmdir C:\Users\[username]\.gradle\caches\
+```
+2. Run gradle build (or gradlew build if using gradle wrapper) in the project's root directory. 
 
 ## Configure Permissions
 
@@ -116,6 +132,12 @@ If you encounter issues using or integrating this plugin, please file a support 
     <!-- This app has permission to register and receive data message. -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 ```
+
+Note :-  If the Build vesion is Android P then please Add following Permission 
+```java
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+```
+
 
 ### Android Test Devices
 
