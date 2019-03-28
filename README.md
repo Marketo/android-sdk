@@ -1,8 +1,11 @@
-# Marketo Mobile SDK for Android 0.7.9
+# Marketo Mobile SDK for Android 0.8.0
 
-The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).  
+The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
 # Change Log
+v0.8.0 (Mar 26, 2019)
+- Fixed Bugs
+
 v0.7.9 (Mar 04, 2019)
 - FCM changes to support custom Marketo Push Notification Receiver
 - Configured Push Notification Channel Name.
@@ -85,7 +88,7 @@ If you encounter issues using or integrating this plugin, please file a support 
 4. In *Android Plugin Repository* add " 'https://github.com/Marketo/android-sdk/raw/preprod/' "
 5. In *Default Library Repository* add " 'https://github.com/Marketo/android-sdk/raw/preprod/' "
 6. Click OK
-7. In application level build.gradle under dependencies add " implementation 'com.marketo:MarketoSDK:0.7.7' "
+7. In application level build.gradle under dependencies add " implementation 'com.marketo:MarketoSDK:0.8.0' "
 8. Sync your Project with Gradle Files
 <!-- 3. Click on the '+' button on the top Left Corner ![file]( ScreenShots/4.png)
 4. Select 'Import .JAR/.AAR package' and click 'Next'![file]( ScreenShots/5.png)
@@ -108,13 +111,6 @@ If you encounter issues using or integrating this plugin, please file a support 
 ```java
     <uses‐permission android:name="android.permission.INTERNET"/>
     <uses‐permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
-    <!‐‐Keeps the processor from sleeping when a message is received.‐‐>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <permission android:name="<PACKAGE_NAME>.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-    <uses-permission android:name="<PACKAGE_NAME>.permission.C2D_MESSAGE" />
-    <!-- This app has permission to register and receive data message. -->
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 ```
 
 ### Android Test Devices
@@ -131,27 +127,6 @@ Add Marketo Activity in manifest file inside application tag.
     </activity>
 ```
 
-### Register Marketo Push Service
-
-To receive push notifications from Marketo, you need to add the Marketo Service and Broadcast Receiver to your AndroidManifest.xml.  Add before the closing of application tag.
-```java
-    <receiver android:name="com.marketo.MarketoBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
-        <intent-filter>
-            <!‐‐Receives the actual messages.‐‐>
-            <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-
-            <!‐‐Register to enable push notification‐‐>
-            <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
-
-            <!‐‐‐Replace YOUR_PACKAGE_NAME with your own package name‐‐>
-            <category android:name="YOUR_PACKAGE_NAME"/>
-        </intent-filter>
-    </receiver>
-
-    <!‐‐Marketo service to handle push registration and notification‐‐>
-    <service android:name="com.marketo.MarketoIntentService"/>
-```
-
 ## SDK Initialization
 
 - Open your Application or Activity class in your app and import the Marketo SDK into your Activity before setContentView or in Application Context.
@@ -161,58 +136,144 @@ To receive push notifications from Marketo, you need to add the Marketo Service 
     Marketo marketoSdk = Marketo.getInstance(getApplicationContext());
     marketoSdk.initializeSDK("munchkinAccountId","secretKey");
 ```
-- Configure activities.  Add Marketo.onStart, Marketo.onStop in all or in base activity as shown below.
 
-```java
-    @Override
-        protected void onStop() {
-        Marketo.onStop(this);
-        super.onStop();
-    }
+## Marketo FCM Push Notification Integration.
 
-    @Override
-        protected void onStart() {
-        Marketo.onStart(this);
-        super.onStart();
-    }
-```
-## Initialize Marketo Push
+ 1. Configure Firebase App on Firebase Console.
+    - Create/Add a Project on Firebase Console.
+       -  In the Firebase console, select Add Project.
+        - Select your GCM project from the list of existing Google Cloud projects, and select Add Firebase.
+        -  In the Firebase welcome screen, select Add Firebase to your Android App.
+        -  Provide your package name and SHA-1, and select Add App. A new google-services.json file for your Firebase app is downloaded.
+        -  Select Continue and follow the detailed instructions for adding the Google Services plugin in Android Studio.
+    - Navigate to ‘Project Settings’ in Project Overview
+        - Click on ‘General’ tab. Download the ‘google-services.json’ file.
+        - Click on ‘Cloud Messaging’ tab. Copy ‘Server Key’ & ‘Sender ID’. Provide these ‘Server Key’ & ‘Sender ID’ to Marketo.
+    - Configure FCM changes in Android App
+        - Switch to the Project view in Android Studio to see your project root directory
+        - Move the downloaded ‘google-services.json’ file into your Android app module root directory
+        - In Project-level build.gradle add the following:
+             ```java
+            buildscript {
+              dependencies {
+                Classpath 'com.google.gms:google-services:4.0.1'
+              }
+            }
+            ```
+        - In App-level build.gradle add the following:
+             ```java
+            dependencies {
+              compile 'com.google.firebase:firebase-core:17.3.4'
+            }
+            // Add to the bottom of the file
+            apply plugin: 'com.google.gms.google-services'
+            ```
+        - Finally, click on “Sync now” in the bar that appears in the ID
 
-After saving the configuration above, you must initialize Marketo Push Notification. Create or open your Application class and copy/paste the code below. You can get your sender ID from the Google Developer Portal.
+ 2. Add / Edit FCM Messaging Service
+    - If Customer don’t have their own FireBaseMessagingService they need to add MyFirebaseMessagingService.java.
 
-```java
-    Marketo marketoSdk = Marketo.getInstance(getApplicationContext());
-    marketoSdk.initializeSDK("munchkinAccountId","secretKey");
+        ```java
+        import com.google.firebase.messaging.FirebaseMessagingService;
+        import com.google.firebase.messaging.RemoteMessage;
+        import com.marketo.Marketo;
 
-    // Enable push notification here.
-    marketoSdk.initializeMarketoPush(SENDER_ID);
-```
-######The token can also be unregistered when user logs out.
+        public class MyFirebaseMessagingService extends FirebaseMessagingService {
+            public static final String TAG = "MsgFirebaseServ";
+
+            @Override
+            public void onNewToken(String token) {
+                super.onNewToken(token);
+                Marketo marketoSdk = Marketo.getInstance(getApplicationContext());
+                marketoSdk.setPushNotificaitonToken(token);
+            }
+
+            @Override
+            public void onMessageReceived(RemoteMessage remoteMessage) {
+                Marketo marketoSdk = Marketo.getInstance(getApplicationContext());
+                marketoSdk.showPushNotificaiton(remoteMessage);
+            }
+        }
+        ```
+
+    - If Customer have their own FirebaseMessagingService then they must provide Push notification token once received. They also need to provide RemoteMessage Object once Received.
+
+        ```java
+            @Override
+            public void onNewToken(String s) {
+                super.onNewToken(s);
+                Marketo marketoSdk = Marketo.getInstance(getApplicationContext());
+                marketoSdk.setPushNotificaitonToken(s);
+                // Add your custom logic here...
+
+            }
+            @Override
+            public void onMessageReceived(RemoteMessage remoteMessage) {
+                //check for the data/notification entry from the payload
+                Marketo marketoSdk = Marketo.getInstance(getApplicationContext());
+                marketoSdk.showPushNotificaiton(remoteMessage);
+                // Add your custom logic here...
+
+         }
+        ```
+
+ 3. Edit your app’s manifest
+    - The FCM SDK automatically adds all required permissions as well as the required receiver functionality. Make sure to remove the following obsolete (and potentially harmful, as they may cause message duplication) elements from your app’s manifest.
+        ```java
+        <permission android:name="<your-package-name>.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+        <uses-permission android:name="<your-package-name>.permission.C2D_MESSAGE" />
+
+        <receiver>
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="<your-package-name>" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        ```
+
+    - Add Following in the AndroidManifest.xml
+        ```java
+        <service android:name=".MyFirebaseMessagingService">
+           <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+           </intent-filter>
+        </service>
+        ```
+
+ 4. Initialize Marketo Push
+    - After saving the configuration above, you must initialize Marketo Push Notification. Create or open your Application class and copy/paste the code below. You can get your sender ID from the Firebase Console. You need to provide any push notification CHANNEL_NAME which will be shown under App's Notification Settings. (By default CHANNEL_NAME will be 'MKTO')
+
+        ```java
+        marketoSdk.initializeMarketoPush(SENDER_ID, CHANNEL_NAME);
+        ```
+
+###### The token can also be unregistered when user logs out.
+
 ```java
 marketoSdk.uninitailizeMarketoPush();
 ```
-######**_Note_** To re-register the push token extract the code from step 3 into an AppDelegate method and call form the ViewController login method.
-
-If you do not have a SENDER_ID, then enable Google Cloud Messaging Service by completing the steps detailed in [this tutorial](https://developer.android.com/google/gcm/client.html).
 
 ###Set Notification Icon (Optional)
 
 To configure a custom notification icon the following method should be called.
 ```java
-
     MarketoConfig.Notification config = new MarketoConfig.Notification();
     // Optional bitmap for honeycomb and above
     config.setNotificationLargeIcon(bitmap);
-
     // Required icon Resource ID
     config.setNotificationSmallIcon(R.id.notification_small_icon);
-
     // Set the configuration
     Marketo.getInstance(context).setNotificationConfig(config);
-
     // Get the configuration set
     Marketo.getInstance(context).getNotificationConfig(config);
-
 ```
 
 ###How to Create User Profile on Android
@@ -222,7 +283,6 @@ To configure a custom notification icon the following method should be called.
 You can create rich profiles by sending user fields as shown below.
 ```java
     MarketoLead profile = new MarketoLead();
-
     // Get user profile from network and populate
     try {
         profile.setEmail("htcone3@gmail.com");
@@ -255,7 +315,6 @@ You can create rich profiles by sending user fields as shown below.
 - Report User Profile
 ```java
     MarketoLead profile = new MarketoLead();
-
     // This method will update user profile
     marketoSdk.associateLead(profile);
 ```
@@ -296,7 +355,6 @@ The Marketo SDK exposes new methods to set and remove the security signature. Th
 
 ```java
       Marketo sdk = Marketo.getInstance(getApplicationContext());
-
       // set signature
       MarketoConfig.SecureMode secureMode = new MarketoConfig.SecureMode();
       secureMode.setAccessKey(<ACCESS_KEY>);
@@ -306,10 +364,8 @@ The Marketo SDK exposes new methods to set and remove the security signature. Th
       if (secureMode.isValid()) {
         sdk.setSecureSignature(secureMode);
       }
-
       // remove signature
       sdk.removeSecureSignature();
-
       // get device id
       sdk.getDeviceId();
 ```
