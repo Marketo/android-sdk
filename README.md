@@ -88,9 +88,9 @@ If you encounter issues using or integrating this plugin, please file a support 
 2.  Configure Android Push access [learn here](http://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+Android+Push+Access)
 
 ## Android SDK Setup
-Use the URL in your Application gradle file:
+Include the following URL in your Application gradle file:
 
-    implementation ‘com.marketo:MarketoSDK:0.8.2’
+implementation ‘com.marketo:MarketoSDK:0.8.2’
 
 
 <!-- 3. Click on the '+' button on the top Left Corner ![file]( ScreenShots/4.png)
