@@ -1,8 +1,11 @@
-# Marketo Mobile SDK for Android 0.8.1
+# Marketo Mobile SDK for Android 0.8.2
 
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
 # Change Log
+v0.8.2 (Feb 25, 2020)
+- Added Android https TLSv1.3 compliance
+
 v0.8.1 (Jul 18, 2019)
 - Fixed Bugs
 
@@ -85,14 +88,11 @@ If you encounter issues using or integrating this plugin, please file a support 
 2.  Configure Android Push access [learn here](http://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+Android+Push+Access)
 
 ## Android SDK Setup
-1. Open your project in android Studio![file]( ScreenShots/2.png)
-2. Right click on your project and select #Open Module Settings![file]( ScreenShots/3.png)
-3. Click on Project which is in the Left panel of the screen ![file]( ScreenShots/4.png)
-4. In *Android Plugin Repository* add " 'https://github.com/Marketo/android-sdk/raw/master/' "
-5. In *Default Library Repository* add " 'https://github.com/Marketo/android-sdk/raw/master/' "
-6. Click OK
-7. In application level build.gradle under dependencies add " implementation 'com.marketo:MarketoSDK:0.7.8' "
-8. Sync your Project with Gradle Files
+Include the following URL in your Application gradle file:
+
+    implementation ‘com.marketo:MarketoSDK:0.8.2’
+
+
 <!-- 3. Click on the '+' button on the top Left Corner ![file]( ScreenShots/4.png)
 4. Select 'Import .JAR/.AAR package' and click 'Next'![file]( ScreenShots/5.png)
 5. Now clik on the '...' button and select the location of the .aar file from Marketo Android SDK ![file]( ScreenShots/6.png)
