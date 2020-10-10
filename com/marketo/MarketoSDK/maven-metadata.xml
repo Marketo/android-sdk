@@ -3,10 +3,11 @@
   <groupId>com.marketo</groupId>
   <artifactId>MarketoSDK</artifactId>
   <versioning>
-    <release>0.7.8</release>
+    <release>0.8.3</release>
     <versions>
-      <version>0.7.8</version>
+      <version>0.8.3</version>
+      <version>0.8.3-beta</version>
     </versions>
-    <lastUpdated>20190719063545</lastUpdated>
+    <lastUpdated>20201010033548</lastUpdated>
   </versioning>
 </metadata>
