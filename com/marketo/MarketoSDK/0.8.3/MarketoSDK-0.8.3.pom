@@ -10,7 +10,7 @@
     <dependency>
       <groupId>com.google.firebase</groupId>
       <artifactId>firebase-messaging</artifactId>
-      <version>20.1.0</version>
+      <version>20.3.0</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>

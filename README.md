@@ -1,10 +1,10 @@
-# Marketo Mobile SDK for Android 0.8.3
+# Marketo Mobile SDK for Android 0.8.2
 
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
 # Change Log
-v0.8.3 (Oct 10, 2020)
-- Bug Fixes
+v0.8.3 (Oct 25, 2020)
+- Bug fixes
 
 v0.8.2 (Feb 25, 2020)
 - Added Android https TLSv1.3 compliance
@@ -91,11 +91,14 @@ If you encounter issues using or integrating this plugin, please file a support 
 2.  Configure Android Push access [learn here](http://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+Android+Push+Access)
 
 ## Android SDK Setup
-Include the following URL in your Application gradle file:
-
-    implementation ‘com.marketo:MarketoSDK:0.8.3’
-
-
+1. Open your project in android Studio![file]( ScreenShots/2.png)
+2. Right click on your project and select #Open Module Settings![file]( ScreenShots/3.png)
+3. Click on Project which is in the Left panel of the screen ![file]( ScreenShots/4.png)
+4. In *Android Plugin Repository* add " 'https://github.com/Marketo/android-sdk/raw/preprod/' "
+5. In *Default Library Repository* add " 'https://github.com/Marketo/android-sdk/raw/preprod/' "
+6. Click OK
+7. In application level build.gradle under dependencies add " implementation 'com.marketo:MarketoSDK:0.8.0' "
+8. Sync your Project with Gradle Files
 <!-- 3. Click on the '+' button on the top Left Corner ![file]( ScreenShots/4.png)
 4. Select 'Import .JAR/.AAR package' and click 'Next'![file]( ScreenShots/5.png)
 5. Now clik on the '...' button and select the location of the .aar file from Marketo Android SDK ![file]( ScreenShots/6.png)
@@ -108,22 +111,6 @@ Include the following URL in your Application gradle file:
 12. once gradle is complete it will show you the following info in Gradle Console![file]( ScreenShots/14.png) -->
 
 ## (Note) Marekto SDK supports Android API Level 14 and above
-## (Troubleshooting) 
-If following error occures while building application with marketo sdk v0.7.8 .  
-Caused by: org.gradle.api.internal.artifacts.ivyservice.ivyresolve.parser.MetaDataParseException: inconsistent module metadata found. Descriptor: com.marketo:MarketoSDK:0.7.7 Errors: bad version: expected='0.7.8' found='0.7.7'
-
-Follow steps:
-1. You can delete all the existing artifacts (artifacts and metadata) Gradle has downloaded using:
-
-For Unix:
-```java
-rm -rf $HOME/.gradle/caches/
-```
-For Windows:
-```java
-rmdir C:\Users\[username]\.gradle\caches\
-```
-2. Run gradle build (or gradlew build if using gradle wrapper) in the project's root directory. 
 
 ## Configure Permissions
 
@@ -134,12 +121,6 @@ rmdir C:\Users\[username]\.gradle\caches\
     <uses‐permission android:name="android.permission.INTERNET"/>
     <uses‐permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 ```
-
-Note :-  If the Build vesion is Android P then please Add following Permission 
-```java
-  <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-```
-
 
 ### Android Test Devices
 
