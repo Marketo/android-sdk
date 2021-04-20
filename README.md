@@ -4,7 +4,7 @@ The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
 # Change Log
 v0.8.4 (Mar 23, 2021)
-- Added Android https TLSv1.3 compliance
+- Bug fixes
 
 v0.8.2 (Feb 25, 2020)
 - Added Android https TLSv1.3 compliance
