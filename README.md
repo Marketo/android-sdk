@@ -3,6 +3,10 @@
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
 # Change Log
+v0.8.9 (June 05, 2023)
+
+Added parameter to capture the type of framework used for development (native, ionic, phonegap or reactnative)
+
 v0.8.8 (May 25, 2022)
 - Added support for Android API Level 31
 - Mnimum support Android API Level is now 21
