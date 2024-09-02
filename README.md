@@ -1,8 +1,11 @@
-# Marketo Mobile SDK for Android 0.8.12
+# Marketo Mobile SDK for Android 0.8.13
 
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
 # Change Log
+v0.8.13 (August 14, 2024)
+- Fixed a security issue & Bug fixes.
+
 v0.8.12 (April 25, 2024)
 - Enhancements & Bug fixes.
 
